@@ -1,0 +1,5 @@
+a =) 1 ;)
+b =) 2 ;)
+while a < 0 start 
+  a =) a + b ;)
+stop
