@@ -105,12 +105,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_parse; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterParse(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitParse(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitParse(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -153,12 +150,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterBlock(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitBlock(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitBlock(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -228,12 +222,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitStatement(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -299,12 +290,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_assignment; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterAssignment(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitAssignment(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitAssignment(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -352,12 +340,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_ifStatement; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterIfStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitIfStatement(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitIfStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -426,12 +411,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_ifStat; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterIfStat(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitIfStat(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitIfStat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -477,12 +459,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_elseIfStat; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterElseIfStat(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitElseIfStat(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitElseIfStat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -526,12 +505,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_elseStat; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterElseStat(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitElseStat(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitElseStat(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -580,12 +556,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_forStatement; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterForStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitForStatement(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitForStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -641,12 +614,9 @@ public class SmileParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_whileStatement; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterWhileStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitWhileStatement(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitWhileStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -699,36 +669,27 @@ public class SmileParser extends Parser {
 		}
 		public GtExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterGtExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitGtExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitGtExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NumberExpressionContext extends ExpressionContext {
 		public TerminalNode Number() { return getToken(SmileParser.Number, 0); }
 		public NumberExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterNumberExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitNumberExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitNumberExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class IdentifierExpressionContext extends ExpressionContext {
 		public TerminalNode Identifier() { return getToken(SmileParser.Identifier, 0); }
 		public IdentifierExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterIdentifierExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitIdentifierExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitIdentifierExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ModulusExpressionContext extends ExpressionContext {
@@ -740,12 +701,9 @@ public class SmileParser extends Parser {
 		}
 		public ModulusExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterModulusExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitModulusExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitModulusExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NotExpressionContext extends ExpressionContext {
@@ -754,12 +712,9 @@ public class SmileParser extends Parser {
 		}
 		public NotExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterNotExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitNotExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitNotExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class MultiplyExpressionContext extends ExpressionContext {
@@ -771,12 +726,9 @@ public class SmileParser extends Parser {
 		}
 		public MultiplyExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterMultiplyExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitMultiplyExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitMultiplyExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class GtEqExpressionContext extends ExpressionContext {
@@ -788,12 +740,9 @@ public class SmileParser extends Parser {
 		}
 		public GtEqExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterGtEqExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitGtEqExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitGtEqExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class AndExpressionContext extends ExpressionContext {
@@ -805,24 +754,18 @@ public class SmileParser extends Parser {
 		}
 		public AndExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterAndExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitAndExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitAndExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StringExpressionContext extends ExpressionContext {
 		public TerminalNode String() { return getToken(SmileParser.String, 0); }
 		public StringExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterStringExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitStringExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitStringExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpressionExpressionContext extends ExpressionContext {
@@ -831,24 +774,18 @@ public class SmileParser extends Parser {
 		}
 		public ExpressionExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterExpressionExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitExpressionExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitExpressionExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NullExpressionContext extends ExpressionContext {
 		public TerminalNode Null() { return getToken(SmileParser.Null, 0); }
 		public NullExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterNullExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitNullExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitNullExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class LtEqExpressionContext extends ExpressionContext {
@@ -860,12 +797,9 @@ public class SmileParser extends Parser {
 		}
 		public LtEqExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterLtEqExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitLtEqExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitLtEqExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class LtExpressionContext extends ExpressionContext {
@@ -877,24 +811,18 @@ public class SmileParser extends Parser {
 		}
 		public LtExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterLtExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitLtExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitLtExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class BoolExpressionContext extends ExpressionContext {
 		public TerminalNode Bool() { return getToken(SmileParser.Bool, 0); }
 		public BoolExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterBoolExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitBoolExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitBoolExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NotEqExpressionContext extends ExpressionContext {
@@ -906,12 +834,9 @@ public class SmileParser extends Parser {
 		}
 		public NotEqExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterNotEqExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitNotEqExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitNotEqExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class DivideExpressionContext extends ExpressionContext {
@@ -923,12 +848,9 @@ public class SmileParser extends Parser {
 		}
 		public DivideExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterDivideExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitDivideExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitDivideExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class OrExpressionContext extends ExpressionContext {
@@ -940,12 +862,9 @@ public class SmileParser extends Parser {
 		}
 		public OrExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterOrExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitOrExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitOrExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class UnaryMinusExpressionContext extends ExpressionContext {
@@ -954,12 +873,9 @@ public class SmileParser extends Parser {
 		}
 		public UnaryMinusExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterUnaryMinusExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitUnaryMinusExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitUnaryMinusExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class PowerExpressionContext extends ExpressionContext {
@@ -971,12 +887,9 @@ public class SmileParser extends Parser {
 		}
 		public PowerExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterPowerExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitPowerExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitPowerExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class EqExpressionContext extends ExpressionContext {
@@ -988,12 +901,9 @@ public class SmileParser extends Parser {
 		}
 		public EqExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterEqExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitEqExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitEqExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class InExpressionContext extends ExpressionContext {
@@ -1006,12 +916,9 @@ public class SmileParser extends Parser {
 		public TerminalNode In() { return getToken(SmileParser.In, 0); }
 		public InExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterInExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitInExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitInExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class AddExpressionContext extends ExpressionContext {
@@ -1023,12 +930,9 @@ public class SmileParser extends Parser {
 		}
 		public AddExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterAddExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitAddExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitAddExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class SubtractExpressionContext extends ExpressionContext {
@@ -1040,12 +944,9 @@ public class SmileParser extends Parser {
 		}
 		public SubtractExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterSubtractExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitSubtractExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitSubtractExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class TernaryExpressionContext extends ExpressionContext {
@@ -1057,12 +958,9 @@ public class SmileParser extends Parser {
 		}
 		public TernaryExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterTernaryExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitTernaryExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitTernaryExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class InputExpressionContext extends ExpressionContext {
@@ -1070,12 +968,9 @@ public class SmileParser extends Parser {
 		public TerminalNode String() { return getToken(SmileParser.String, 0); }
 		public InputExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).enterInputExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SmileListener ) ((SmileListener)listener).exitInputExpression(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SmileVisitor ) return ((SmileVisitor<? extends T>)visitor).visitInputExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
