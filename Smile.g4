@@ -1,160 +1,83 @@
-grammar Smile;
+grammar Smile;  // A tiny subset of Pascal
 
-parse
- : block EOF
- ;
+@header {
+    import wci.intermediate.*;
+    import wci.intermediate.symtabimpl.*;
+}
 
-block
- : (statement)* (Return expression ';)')?
- ;
+program   : header mainBlock '.' ;
+header    : PROGRAM IDENTIFIER ';' ;
+mainBlock : block;
+block     : declarations compoundStmt ;
 
-statement
- : assignment ';)'
- | ifStatement 
- | forStatement
- | whileStatement
- ;
+declarations : VAR declList ';)' ;
+declList     : decl ( ';)' decl )* ;
+decl         : varList ':)' typeId ;
+varList      : varId ( ',' varId )* ;
+varId        : IDENTIFIER ;
+typeId       : IDENTIFIER ;
 
-assignment
- : Identifier '=)' expression
- ;
+compoundStmt : START stmtList ';)' STOP ;
 
+stmt : compoundStmt
+     | assignmentStmt
+     | ifStatement
+     | print_stat
+     ;
+     
+stmtList       : stmt ( ';)' stmt )* ;
+assignmentStmt : variable '=)' expr ;
+ifStatement    : IF expr THEN stmt ( ELSE stmt )? ;
+print_stat     : PRINT '(' expr ')';
 
-ifStatement
- : ifStat elseIfStat* elseStat? Stop
- ;
+variable : IDENTIFIER ;
 
-ifStat
- : If expression Start block
- ;
+expr locals [ TypeSpec type = null ]
+    : expr mulDivOp expr   # mulDivExpr
+    | expr addSubOp expr   # addSubExpr
+    | expr operator expr      # relOpExpr
+    | number               # unsignedNumberExpr
+    | signedNumber         # signedNumberExpr
+    | variable             # variableExpr
+    | '(' expr ')'         # parenExpr
+    ;
+     
+mulDivOp : MUL_OP | DIV_OP ;
+addSubOp : ADD_OP | SUB_OP ;
+operator    : EQUALS | nEQUALS | lTHAN | gThan ;
+     
+signedNumber locals [ TypeSpec type = null ] 
+    : sign number 
+    ;
+sign : ADD_OP | SUB_OP ;
 
-elseIfStat
- : Else If expression Start block
- ;
+number locals [ TypeSpec type = null ]
+    : INTEGER    # integerConst
+    | FLOAT      # floatConst
+    ;
 
-elseStat
- : Else Start block
- ;
+PROGRAM : 'PROGRAM' ;
+VAR     : 'VAR' ;
+START   : 'START' ;
+STOP     : 'STOP' ;
+IF      : 'IF' ;
+THEN    : 'THEN' ;
+ELSE    : 'ELSE' ;
+PRINT   : 'PRINT' ;
 
+IDENTIFIER : [a-zA-Z][a-zA-Z0-9]* ;
+INTEGER    : [0-9]+ ;
+FLOAT      : [0-9]+ '.' [0-9]+ ;
 
-forStatement
- : For Identifier '=)' expression To expression Start block Stop
- ;
+MUL_OP :   '*' ;
+DIV_OP :   '/' ;
+ADD_OP :   '+' ;
+SUB_OP :   '-' ;
 
-whileStatement
- : While expression Start block Stop
- ;
+EQUALS :  '==' ;
+nEQUALS :  '!=' ;
+lTHAN :  '<'  ;
+gThan :  '>'  ;
 
-
-
-expression
- : '-' expression                           #unaryMinusExpression
- | '!' expression                           #notExpression
- | expression '^' expression                #powerExpression
- | expression '*' expression                #multiplyExpression
- | expression '/' expression                #divideExpression
- | expression '%' expression                #modulusExpression
- | expression '+' expression                #addExpression
- | expression '-' expression                #subtractExpression
- | expression '>=' expression               #gtEqExpression
- | expression '<=' expression               #ltEqExpression
- | expression '>' expression                #gtExpression
- | expression '<' expression                #ltExpression
- | expression '==' expression               #eqExpression
- | expression '!=' expression               #notEqExpression
- | expression '&&' expression               #andExpression
- | expression '||' expression               #orExpression
- | expression '?' expression ':' expression #ternaryExpression
- | expression In expression                 #inExpression
- | Number                                   #numberExpression
- | Bool                                     #boolExpression
- | Null                                     #nullExpression
- 
- 
- | Identifier                   			#identifierExpression
- | String                          			#stringExpression
- | '(' expression ')'          		 		#expressionExpression
- | Input '(' String? ')'                    #inputExpression
- ;
-
-
-
-Def      : 'def';
-If       : 'if';
-Else     : 'else';
-Return   : 'return';
-For      : 'for';
-While    : 'while';
-To       : 'to';
-Start       : 'start';
-Stop      : 'stop';
-
-Input    : 'input';
-
-In       : 'in';
-Null     : 'null';
-
-Pow      : '^';
-Excl     : '!';
-GT       : '>';
-LT       : '<';
-
-Or       : '||';
-And      : '&&';
-Equals   : '=)=)';
-NEquals  : '!=';
-GTEquals : '>=';
-LTEquals : '<=';
-
-Add      : '+';
-Subtract : '-';
-Multiply : '*';
-Divide   : '/';
-Modulus  : '%';
-
-SColon   : ';)';
-Assign   : '=)';
-
-Comma    : ',';
-QMark    : '?';
-Colon    : ':';
-
-OBrace   : '{';
-CBrace   : '}';
-OParen   : '(';
-CParen   : ')';
-
-Bool
- : 'true' 
- | 'false'
- ;
-
-Number
- : Int ('.' Digit*)?
- ;
-
-Identifier
- : [a-zA-Z_] [a-zA-Z_0-9]*
- ;
-
-String
- : ["] (~["\r\n] | '\\\\' | '\\"')* ["]
- | ['] (~['\r\n] | '\\\\' | '\\\'')* [']
- ;
-
-Comment
- : ('//' ~[\r\n]* | '/*' .*? '*/') -> skip
- ;
-
-Space
- : [ \t\r\n\u000C] -> skip
- ;
-
-fragment Int
- : [1-9] Digit*
- | '0'
- ;
-  
-fragment Digit 
- : [0-9]
- ;
+NEWLINE : '\r'? '\n' -> skip  ;
+WS      : [ \t]+ -> skip ; 

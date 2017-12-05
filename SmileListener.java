@@ -1,4 +1,8 @@
 // Generated from Smile.g4 by ANTLR 4.7
+
+    import wci.intermediate.*;
+    import wci.intermediate.symtabimpl.*;
+
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -7,15 +11,35 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface SmileListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#parse}.
+	 * Enter a parse tree produced by {@link SmileParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterParse(SmileParser.ParseContext ctx);
+	void enterProgram(SmileParser.ProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#parse}.
+	 * Exit a parse tree produced by {@link SmileParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitParse(SmileParser.ParseContext ctx);
+	void exitProgram(SmileParser.ProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#header}.
+	 * @param ctx the parse tree
+	 */
+	void enterHeader(SmileParser.HeaderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#header}.
+	 * @param ctx the parse tree
+	 */
+	void exitHeader(SmileParser.HeaderContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#mainBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterMainBlock(SmileParser.MainBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#mainBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitMainBlock(SmileParser.MainBlockContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SmileParser#block}.
 	 * @param ctx the parse tree
@@ -27,25 +51,105 @@ public interface SmileListener extends ParseTreeListener {
 	 */
 	void exitBlock(SmileParser.BlockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#statement}.
+	 * Enter a parse tree produced by {@link SmileParser#declarations}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(SmileParser.StatementContext ctx);
+	void enterDeclarations(SmileParser.DeclarationsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#statement}.
+	 * Exit a parse tree produced by {@link SmileParser#declarations}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(SmileParser.StatementContext ctx);
+	void exitDeclarations(SmileParser.DeclarationsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#assignment}.
+	 * Enter a parse tree produced by {@link SmileParser#declList}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment(SmileParser.AssignmentContext ctx);
+	void enterDeclList(SmileParser.DeclListContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#assignment}.
+	 * Exit a parse tree produced by {@link SmileParser#declList}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment(SmileParser.AssignmentContext ctx);
+	void exitDeclList(SmileParser.DeclListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#decl}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecl(SmileParser.DeclContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#decl}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecl(SmileParser.DeclContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#varList}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarList(SmileParser.VarListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#varList}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarList(SmileParser.VarListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#varId}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarId(SmileParser.VarIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#varId}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarId(SmileParser.VarIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#typeId}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypeId(SmileParser.TypeIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#typeId}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypeId(SmileParser.TypeIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#compoundStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompoundStmt(SmileParser.CompoundStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#compoundStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompoundStmt(SmileParser.CompoundStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmt(SmileParser.StmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmt(SmileParser.StmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#stmtList}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmtList(SmileParser.StmtListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#stmtList}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmtList(SmileParser.StmtListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#assignmentStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignmentStmt(SmileParser.AssignmentStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#assignmentStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignmentStmt(SmileParser.AssignmentStmtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SmileParser#ifStatement}.
 	 * @param ctx the parse tree
@@ -57,353 +161,211 @@ public interface SmileListener extends ParseTreeListener {
 	 */
 	void exitIfStatement(SmileParser.IfStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#ifStat}.
+	 * Enter a parse tree produced by {@link SmileParser#print_stat}.
 	 * @param ctx the parse tree
 	 */
-	void enterIfStat(SmileParser.IfStatContext ctx);
+	void enterPrint_stat(SmileParser.Print_statContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#ifStat}.
+	 * Exit a parse tree produced by {@link SmileParser#print_stat}.
 	 * @param ctx the parse tree
 	 */
-	void exitIfStat(SmileParser.IfStatContext ctx);
+	void exitPrint_stat(SmileParser.Print_statContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#elseIfStat}.
+	 * Enter a parse tree produced by {@link SmileParser#variable}.
 	 * @param ctx the parse tree
 	 */
-	void enterElseIfStat(SmileParser.ElseIfStatContext ctx);
+	void enterVariable(SmileParser.VariableContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#elseIfStat}.
+	 * Exit a parse tree produced by {@link SmileParser#variable}.
 	 * @param ctx the parse tree
 	 */
-	void exitElseIfStat(SmileParser.ElseIfStatContext ctx);
+	void exitVariable(SmileParser.VariableContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#elseStat}.
+	 * Enter a parse tree produced by the {@code variableExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterElseStat(SmileParser.ElseStatContext ctx);
+	void enterVariableExpr(SmileParser.VariableExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#elseStat}.
+	 * Exit a parse tree produced by the {@code variableExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitElseStat(SmileParser.ElseStatContext ctx);
+	void exitVariableExpr(SmileParser.VariableExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#forStatement}.
+	 * Enter a parse tree produced by the {@code addSubExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterForStatement(SmileParser.ForStatementContext ctx);
+	void enterAddSubExpr(SmileParser.AddSubExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#forStatement}.
+	 * Exit a parse tree produced by the {@code addSubExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitForStatement(SmileParser.ForStatementContext ctx);
+	void exitAddSubExpr(SmileParser.AddSubExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#whileStatement}.
+	 * Enter a parse tree produced by the {@code relOpExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhileStatement(SmileParser.WhileStatementContext ctx);
+	void enterRelOpExpr(SmileParser.RelOpExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#whileStatement}.
+	 * Exit a parse tree produced by the {@code relOpExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhileStatement(SmileParser.WhileStatementContext ctx);
+	void exitRelOpExpr(SmileParser.RelOpExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code gtExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by the {@code unsignedNumberExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterGtExpression(SmileParser.GtExpressionContext ctx);
+	void enterUnsignedNumberExpr(SmileParser.UnsignedNumberExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code gtExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by the {@code unsignedNumberExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitGtExpression(SmileParser.GtExpressionContext ctx);
+	void exitUnsignedNumberExpr(SmileParser.UnsignedNumberExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code numberExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by the {@code mulDivExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumberExpression(SmileParser.NumberExpressionContext ctx);
+	void enterMulDivExpr(SmileParser.MulDivExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code numberExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by the {@code mulDivExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumberExpression(SmileParser.NumberExpressionContext ctx);
+	void exitMulDivExpr(SmileParser.MulDivExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code identifierExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by the {@code parenExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterIdentifierExpression(SmileParser.IdentifierExpressionContext ctx);
+	void enterParenExpr(SmileParser.ParenExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code identifierExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by the {@code parenExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitIdentifierExpression(SmileParser.IdentifierExpressionContext ctx);
+	void exitParenExpr(SmileParser.ParenExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code modulusExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by the {@code signedNumberExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterModulusExpression(SmileParser.ModulusExpressionContext ctx);
+	void enterSignedNumberExpr(SmileParser.SignedNumberExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code modulusExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by the {@code signedNumberExpr}
+	 * labeled alternative in {@link SmileParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitModulusExpression(SmileParser.ModulusExpressionContext ctx);
+	void exitSignedNumberExpr(SmileParser.SignedNumberExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code notExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#mulDivOp}.
 	 * @param ctx the parse tree
 	 */
-	void enterNotExpression(SmileParser.NotExpressionContext ctx);
+	void enterMulDivOp(SmileParser.MulDivOpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code notExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#mulDivOp}.
 	 * @param ctx the parse tree
 	 */
-	void exitNotExpression(SmileParser.NotExpressionContext ctx);
+	void exitMulDivOp(SmileParser.MulDivOpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code multiplyExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#addSubOp}.
 	 * @param ctx the parse tree
 	 */
-	void enterMultiplyExpression(SmileParser.MultiplyExpressionContext ctx);
+	void enterAddSubOp(SmileParser.AddSubOpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code multiplyExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#addSubOp}.
 	 * @param ctx the parse tree
 	 */
-	void exitMultiplyExpression(SmileParser.MultiplyExpressionContext ctx);
+	void exitAddSubOp(SmileParser.AddSubOpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code gtEqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#operator}.
 	 * @param ctx the parse tree
 	 */
-	void enterGtEqExpression(SmileParser.GtEqExpressionContext ctx);
+	void enterOperator(SmileParser.OperatorContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code gtEqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#operator}.
 	 * @param ctx the parse tree
 	 */
-	void exitGtEqExpression(SmileParser.GtEqExpressionContext ctx);
+	void exitOperator(SmileParser.OperatorContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code andExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#signedNumber}.
 	 * @param ctx the parse tree
 	 */
-	void enterAndExpression(SmileParser.AndExpressionContext ctx);
+	void enterSignedNumber(SmileParser.SignedNumberContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code andExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#signedNumber}.
 	 * @param ctx the parse tree
 	 */
-	void exitAndExpression(SmileParser.AndExpressionContext ctx);
+	void exitSignedNumber(SmileParser.SignedNumberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code stringExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#sign}.
 	 * @param ctx the parse tree
 	 */
-	void enterStringExpression(SmileParser.StringExpressionContext ctx);
+	void enterSign(SmileParser.SignContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code stringExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#sign}.
 	 * @param ctx the parse tree
 	 */
-	void exitStringExpression(SmileParser.StringExpressionContext ctx);
+	void exitSign(SmileParser.SignContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code expressionExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by the {@code integerConst}
+	 * labeled alternative in {@link SmileParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpressionExpression(SmileParser.ExpressionExpressionContext ctx);
+	void enterIntegerConst(SmileParser.IntegerConstContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code expressionExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by the {@code integerConst}
+	 * labeled alternative in {@link SmileParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpressionExpression(SmileParser.ExpressionExpressionContext ctx);
+	void exitIntegerConst(SmileParser.IntegerConstContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code nullExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by the {@code floatConst}
+	 * labeled alternative in {@link SmileParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void enterNullExpression(SmileParser.NullExpressionContext ctx);
+	void enterFloatConst(SmileParser.FloatConstContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code nullExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by the {@code floatConst}
+	 * labeled alternative in {@link SmileParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void exitNullExpression(SmileParser.NullExpressionContext ctx);
+	void exitFloatConst(SmileParser.FloatConstContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ltEqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#nEQUALS}.
 	 * @param ctx the parse tree
 	 */
-	void enterLtEqExpression(SmileParser.LtEqExpressionContext ctx);
+	void enterNEQUALS(SmileParser.NEQUALSContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ltEqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#nEQUALS}.
 	 * @param ctx the parse tree
 	 */
-	void exitLtEqExpression(SmileParser.LtEqExpressionContext ctx);
+	void exitNEQUALS(SmileParser.NEQUALSContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ltExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#lTHAN}.
 	 * @param ctx the parse tree
 	 */
-	void enterLtExpression(SmileParser.LtExpressionContext ctx);
+	void enterLTHAN(SmileParser.LTHANContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ltExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#lTHAN}.
 	 * @param ctx the parse tree
 	 */
-	void exitLtExpression(SmileParser.LtExpressionContext ctx);
+	void exitLTHAN(SmileParser.LTHANContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code boolExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Enter a parse tree produced by {@link SmileParser#gThan}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolExpression(SmileParser.BoolExpressionContext ctx);
+	void enterGThan(SmileParser.GThanContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code boolExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
+	 * Exit a parse tree produced by {@link SmileParser#gThan}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolExpression(SmileParser.BoolExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code notEqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNotEqExpression(SmileParser.NotEqExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code notEqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNotEqExpression(SmileParser.NotEqExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code divideExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterDivideExpression(SmileParser.DivideExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code divideExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitDivideExpression(SmileParser.DivideExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code orExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrExpression(SmileParser.OrExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code orExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrExpression(SmileParser.OrExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code unaryMinusExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryMinusExpression(SmileParser.UnaryMinusExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code unaryMinusExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryMinusExpression(SmileParser.UnaryMinusExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code powerExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPowerExpression(SmileParser.PowerExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code powerExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPowerExpression(SmileParser.PowerExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code eqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterEqExpression(SmileParser.EqExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code eqExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitEqExpression(SmileParser.EqExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code inExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterInExpression(SmileParser.InExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code inExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitInExpression(SmileParser.InExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code addExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAddExpression(SmileParser.AddExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code addExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAddExpression(SmileParser.AddExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code subtractExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSubtractExpression(SmileParser.SubtractExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code subtractExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubtractExpression(SmileParser.SubtractExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ternaryExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterTernaryExpression(SmileParser.TernaryExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ternaryExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitTernaryExpression(SmileParser.TernaryExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code inputExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterInputExpression(SmileParser.InputExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code inputExpression}
-	 * labeled alternative in {@link SmileParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitInputExpression(SmileParser.InputExpressionContext ctx);
+	void exitGThan(SmileParser.GThanContext ctx);
 }
