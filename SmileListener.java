@@ -161,15 +161,55 @@ public interface SmileListener extends ParseTreeListener {
 	 */
 	void exitIfStatement(SmileParser.IfStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#print_stat}.
+	 * Enter a parse tree produced by {@link SmileParser#printStmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrint_stat(SmileParser.Print_statContext ctx);
+	void enterPrintStmt(SmileParser.PrintStmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#print_stat}.
+	 * Exit a parse tree produced by {@link SmileParser#printStmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrint_stat(SmileParser.Print_statContext ctx);
+	void exitPrintStmt(SmileParser.PrintStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#parenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void enterParenthesis(SmileParser.ParenthesisContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#parenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void exitParenthesis(SmileParser.ParenthesisContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteral(SmileParser.LiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteral(SmileParser.LiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#stringLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteral(SmileParser.StringLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#stringLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteral(SmileParser.StringLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SmileParser#exprLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterExprLiteral(SmileParser.ExprLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#exprLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitExprLiteral(SmileParser.ExprLiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SmileParser#variable}.
 	 * @param ctx the parse tree
@@ -285,15 +325,15 @@ public interface SmileListener extends ParseTreeListener {
 	 */
 	void exitAddSubOp(SmileParser.AddSubOpContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SmileParser#operator}.
+	 * Enter a parse tree produced by {@link SmileParser#relOp}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperator(SmileParser.OperatorContext ctx);
+	void enterRelOp(SmileParser.RelOpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SmileParser#operator}.
+	 * Exit a parse tree produced by {@link SmileParser#relOp}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperator(SmileParser.OperatorContext ctx);
+	void exitRelOp(SmileParser.RelOpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SmileParser#signedNumber}.
 	 * @param ctx the parse tree
@@ -338,34 +378,4 @@ public interface SmileListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFloatConst(SmileParser.FloatConstContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SmileParser#nEQUALS}.
-	 * @param ctx the parse tree
-	 */
-	void enterNEQUALS(SmileParser.NEQUALSContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SmileParser#nEQUALS}.
-	 * @param ctx the parse tree
-	 */
-	void exitNEQUALS(SmileParser.NEQUALSContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SmileParser#lTHAN}.
-	 * @param ctx the parse tree
-	 */
-	void enterLTHAN(SmileParser.LTHANContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SmileParser#lTHAN}.
-	 * @param ctx the parse tree
-	 */
-	void exitLTHAN(SmileParser.LTHANContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SmileParser#gThan}.
-	 * @param ctx the parse tree
-	 */
-	void enterGThan(SmileParser.GThanContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SmileParser#gThan}.
-	 * @param ctx the parse tree
-	 */
-	void exitGThan(SmileParser.GThanContext ctx);
 }

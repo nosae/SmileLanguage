@@ -1,20 +1,18 @@
 PROGRAM sample;
 
 VAR
-    i, j :) integer ;)
+    i, j, k :) integer ;)
 
     
 START
     i =) 25 ;)
+    j =) 0 ;)
+    k =) 20 ;)
 
-    
-     IF (i < 5) THEN 
-        
-
-        
+     IF (i > 5) THEN
+                
             j =) 7 ;)
-        
-            PRINT(j) ;)
-       
+
+            PRINT (j) ;)
 
 STOP.

@@ -104,11 +104,35 @@ public interface SmileVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfStatement(SmileParser.IfStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SmileParser#print_stat}.
+	 * Visit a parse tree produced by {@link SmileParser#printStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPrint_stat(SmileParser.Print_statContext ctx);
+	T visitPrintStmt(SmileParser.PrintStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SmileParser#parenthesis}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParenthesis(SmileParser.ParenthesisContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SmileParser#literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLiteral(SmileParser.LiteralContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SmileParser#stringLiteral}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringLiteral(SmileParser.StringLiteralContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SmileParser#exprLiteral}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExprLiteral(SmileParser.ExprLiteralContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SmileParser#variable}.
 	 * @param ctx the parse tree
@@ -177,11 +201,11 @@ public interface SmileVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddSubOp(SmileParser.AddSubOpContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SmileParser#operator}.
+	 * Visit a parse tree produced by {@link SmileParser#relOp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOperator(SmileParser.OperatorContext ctx);
+	T visitRelOp(SmileParser.RelOpContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SmileParser#signedNumber}.
 	 * @param ctx the parse tree
@@ -208,22 +232,4 @@ public interface SmileVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFloatConst(SmileParser.FloatConstContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SmileParser#nEQUALS}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNEQUALS(SmileParser.NEQUALSContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SmileParser#lTHAN}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLTHAN(SmileParser.LTHANContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SmileParser#gThan}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGThan(SmileParser.GThanContext ctx);
 }

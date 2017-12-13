@@ -22,20 +22,30 @@ compoundStmt : START stmtList ';)' STOP ;
 stmt : compoundStmt
      | assignmentStmt
      | ifStatement
-     | print_stat
+     | printStmt
      ;
      
 stmtList       : stmt ( ';)' stmt )* ;
 assignmentStmt : variable '=)' expr ;
 ifStatement    : IF expr THEN stmt ( ELSE stmt )? ;
-print_stat     : PRINT '(' expr ')';
+printStmt      : 'print' '_'? parenthesis;
+parenthesis : '(' literal* ((',' | '+')? literal)* ')' ;
+literal : exprLiteral | stringLiteral;
+stringLiteral locals [ TypeSpec type = null ]
+    : STRING               
+    ;
+exprLiteral locals [ TypeSpec type = null ]
+	: expr
+	;
 
 variable : IDENTIFIER ;
+
+
 
 expr locals [ TypeSpec type = null ]
     : expr mulDivOp expr   # mulDivExpr
     | expr addSubOp expr   # addSubExpr
-    | expr operator expr      # relOpExpr
+    | expr relOp expr      # relOpExpr
     | number               # unsignedNumberExpr
     | signedNumber         # signedNumberExpr
     | variable             # variableExpr
@@ -44,7 +54,7 @@ expr locals [ TypeSpec type = null ]
      
 mulDivOp : MUL_OP | DIV_OP ;
 addSubOp : ADD_OP | SUB_OP ;
-operator    : EQUALS | nEQUALS | lTHAN | gThan ;
+relOp	 : EQ | NE | LT | GT ;
      
 signedNumber locals [ TypeSpec type = null ] 
     : sign number 
@@ -59,7 +69,7 @@ number locals [ TypeSpec type = null ]
 PROGRAM : 'PROGRAM' ;
 VAR     : 'VAR' ;
 START   : 'START' ;
-STOP     : 'STOP' ;
+STOP    : 'STOP' ;
 IF      : 'IF' ;
 THEN    : 'THEN' ;
 ELSE    : 'ELSE' ;
@@ -68,16 +78,19 @@ PRINT   : 'PRINT' ;
 IDENTIFIER : [a-zA-Z][a-zA-Z0-9]* ;
 INTEGER    : [0-9]+ ;
 FLOAT      : [0-9]+ '.' [0-9]+ ;
+STRING     : '"' ~('\r' | '\n' | '"')* '"' 
+        |	'\'' ~('\r' | '\n' | '"')* '\'';
 
 MUL_OP :   '*' ;
 DIV_OP :   '/' ;
 ADD_OP :   '+' ;
 SUB_OP :   '-' ;
 
-EQUALS :  '==' ;
-nEQUALS :  '!=' ;
-lTHAN :  '<'  ;
-gThan :  '>'  ;
+
+EQ :  '==' ;
+NE :  '!=' ;
+LT :  '<'  ;
+GT :  '>'  ;
 
 NEWLINE : '\r'? '\n' -> skip  ;
 WS      : [ \t]+ -> skip ; 

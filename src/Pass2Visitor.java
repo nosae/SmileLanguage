@@ -1,16 +1,20 @@
 import java.io.PrintWriter;
 
+
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
 public class Pass2Visitor extends SmileBaseVisitor<Integer> 
 {
-    String programName;
+	private int labelCount;
+	String programName;
     private PrintWriter jFile;
+    private final String halfIndent = "  ";
     
     public Pass2Visitor(PrintWriter jFile)
     {
         this.jFile = jFile;
+        this.labelCount = 1;
     }
     
     @Override 
@@ -77,6 +81,7 @@ public class Pass2Visitor extends SmileBaseVisitor<Integer>
                              :                                    "?";
         
         // Emit a field put instruction.
+//        jFile.println(";starwhale");
         jFile.println("\tputstatic\t" + programName
                            +  "/" + ctx.variable().IDENTIFIER().toString() 
                            + " " + typeIndicator);
@@ -84,58 +89,172 @@ public class Pass2Visitor extends SmileBaseVisitor<Integer>
         return value; 
     }
 
+    @Override
+    public Integer visitIfStatement(SmileParser.IfStatementContext ctx){
+  	
+  	  Integer value;
+  		int currentLabelCount = this.labelCount++;
+
+  		if(ctx.stmt().size() == 1)  //only if
+  		{
+  			value = visit(ctx.expr());
+
+  			jFile.println("ifeq	L" + currentLabelCount);
+
+  			value = visit(ctx.stmt(0));
+
+  			jFile.println("L" + currentLabelCount + ":");
+  		}
+  		else //with else statement
+  		{
+  			value = visit(ctx.expr());
+
+  			int elseLevel = this.labelCount++;
+
+  			jFile.println("ifeq	L" + elseLevel);
+
+  			value = visit(ctx.stmt(0));
+
+  			jFile.println("goto L" + currentLabelCount);
+
+  			jFile.println("L" + elseLevel + ":");
+
+  			value = visit(ctx.stmt(1));
+
+  			jFile.println("L" + currentLabelCount + ":");
+
+  		}
+
+  		return value;
+  	  
+  	 
+    }
+    
+   
     
     @Override
-    public Integer visitIfStatement(SmileParser.IfStatementContext ctx)
+    public Integer visitRelOpExpr(SmileParser.RelOpExprContext ctx)
     {
-        
-        Label nextLabel = Label.newLabel();
-       
-        if (ctx.getChild(5) == null) {
-            
-            visit(ctx.expr());
-            jFile.println("\tifeq\t" + nextLabel.toString());
-            visit(ctx.getChild(3));
-            jFile.println(nextLabel.toString());
-            
-        }
-        
-        else {
-            
-            Label falseLabel = Label.newLabel();
-            visit(ctx.expr());
-            jFile.println("\tifeq\t" + falseLabel.toString());
-            visit(ctx.getChild(3));
-            
-            jFile.println("\tgoto\t" + nextLabel.toString());
-            jFile.println(falseLabel.toString() + ":");
+    	Integer value = visitChildren(ctx);
+    	
+    	TypeSpec type1 = ctx.expr(0).type;
+    	TypeSpec type2 = ctx.expr(1).type;
+    	
+    	boolean integerMode =	(type1 == Predefined.integerType)
+    						 && (type2 == Predefined.integerType);
+    	boolean realMode	=	(type1 == Predefined.realType)
+    					     && (type2 == Predefined.realType);
+    	
+    	String op = ctx.relOp().getText();
+    	String opcode;
+    	
+    	if (realMode) {
+    		jFile.println("fcmpg");
+    	}
+    	
+    	if (op.equals("==")) {
+            opcode = integerMode ? "if_icmpeq"
+                    : realMode    ? "ifeq"
+                    :               "????";
+    	}
+    	
+    	else if (op.equals("!=")) {
+            opcode = integerMode ? "if_icmpne"
+                    : realMode    ? "ifne"
+                    :               "????";
+    	}
+    	
+    	else if (op.equals("<")) {
+            opcode = integerMode ? "if_icmplt"
+                    : realMode    ? "iflt"
+                    :               "????";
+    	}
+    	
+    	else {
+            opcode = integerMode ? "if_icmpgt"
+                    : realMode    ? "ifgt"
+                    :               "????";
+    	}
+    	
+    	Label trueLabel = Label.newLabel();
+    	Label nextLabel = Label.newLabel();
+    	
+    	//emit the appropriate opcode for relational expression
+    	jFile.println("\t" + opcode + "\t" + trueLabel.toString());
+    	
+    	//emit remaining code
+    	
+    	jFile.println("\ticonst_0");
+    	jFile.println("\tgoto" + "\t" + nextLabel.toString());
+    	//true-label
+    	jFile.println(trueLabel.toString() + ":");
+    	jFile.println("\ticonst_1");
+    	//next-label
+    	jFile.println(nextLabel.toString() + ":");
+    	
+    	
+    	return value;
+    }
 
-            visit(ctx.getChild(5));
-            
-            jFile.println(nextLabel.toString() + ":");
-        }
-          
-        return 0;
+    
+    
+ 
+    
+    @Override
+    public Integer visitPrintStmt(SmileParser.PrintStmtContext ctx)
+    {
+    		for(int i = 0; i < ctx.parenthesis().literal().size(); i++)
+	    {
+	    		visit(ctx.parenthesis().literal(i));
+	    }
+    		if(ctx.getChild(2) == null) 
+    		{
+        		jFile.println("\tgetstatic     java/lang/System/out Ljava/io/PrintStream;");
+        		jFile.println("\tldc           \"\"");
+        		jFile.println("\tinvokevirtual java/io/PrintStream/println(Ljava/lang/String;)V");
+    		}
+    		
+	    	return 0;
     }
     
     @Override
-    public Integer visitPrint_stat(SmileParser.Print_statContext ctx)
+    public Integer visitLiteral(SmileParser.LiteralContext ctx)
     {
-    	jFile.println("\tgetstatic java/lang/System/out Ljava/io/PrintStream;");
-    	visit(ctx.expr());
-    	
-    	TypeSpec type = ctx.expr().type;
-    	
-    	String typeIndicator = (type == Predefined.integerType) ? "I"
-                : (type == Predefined.realType)    ? "F"
-                :                                    "?";
-
-    	jFile.println("\tinvokevirtual	java/io/PrintStream/println(" + typeIndicator + ")V");
-    	
-    	return 0;
+//	    	for(int i = 0, i < ctx.literal())
+    		return visitChildren(ctx);
     }
 
+    @Override
+    public Integer visitStringLiteral(SmileParser.StringLiteralContext ctx)
+    {
+    		jFile.println("\tgetstatic     java/lang/System/out Ljava/io/PrintStream;");
+    		String sub = ctx.STRING().getText().substring(1,  ctx.STRING().getText().length() - 1); // take out single or double quotes
+    		jFile.println("\tldc           \"" + sub + "\"");
+    		jFile.println("\tinvokevirtual java/io/PrintStream/print(Ljava/lang/String;)V");
+    		return visitChildren(ctx);
+    }
     
+    public Integer visitExprLiteral(SmileParser.ExprLiteralContext ctx)
+    {
+    		
+    		TypeSpec type = ctx.expr().type;
+            
+        String typeIndicator = (type == Predefined.integerType) ? "I"
+                             : (type == Predefined.realType)    ? "F"
+                             :                                    "?";
+//        typeIndicator = "I";
+        jFile.println("; starwhale 2");
+    		jFile.println("\tgetstatic     java/lang/System/out Ljava/io/PrintStream;");
+    		jFile.println("\tdup");
+    		Integer value = visitChildren(ctx);
+    		jFile.println("\tinvokevirtual java/io/PrintStream/print(" + typeIndicator + ")V");
+    		
+    		jFile.println("\tgetstatic     java/lang/System/out Ljava/io/PrintStream;");
+    		jFile.println("\tldc           \" \"");
+    		jFile.println("\tinvokevirtual java/io/PrintStream/print(Ljava/lang/String;)V");
+    		
+    		return value;
+    }
     
     
     @Override 

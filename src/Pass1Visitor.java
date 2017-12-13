@@ -15,12 +15,14 @@ public class Pass1Visitor extends SmileBaseVisitor<Integer>
     private SymTabEntry programId;
     private ArrayList<SymTabEntry> variableIdList;
     private PrintWriter jFile;
+   
     
     public Pass1Visitor()
     {
         // Create and initialize the symbol table stack.
         symTabStack = SymTabFactory.createSymTabStack();
         Predefined.initialize(symTabStack);
+      
     }
     
     public PrintWriter getAssemblyFile() { return jFile; }
@@ -130,6 +132,18 @@ public class Pass1Visitor extends SmileBaseVisitor<Integer>
             type = Predefined.realType;
             typeIndicator = "F";
         }
+        else if(typeName.equalsIgnoreCase("boolean")) {
+        	type = Predefined.booleanType;
+            typeIndicator = "B";
+        }
+        else if(typeName.equalsIgnoreCase("char")) {
+        	type = Predefined.charType;
+            typeIndicator = "C";
+        }
+        else if(typeName.equalsIgnoreCase("undefined")) {
+        	type = Predefined.undefinedType;
+            typeIndicator = "U";
+        }
         else {
             type = null;
             typeIndicator = "?";
@@ -211,6 +225,13 @@ public class Pass1Visitor extends SmileBaseVisitor<Integer>
     {
         Integer value = visit(ctx.number());
         ctx.type = ctx.number().type;
+        return value;
+    }
+    
+    public Integer visitStringLiteral(SmileParser.StringLiteralContext ctx)
+    {
+    		Integer value = visit(ctx.STRING());
+//        ctx.type = ctx.STRING().type;
         return value;
     }
 

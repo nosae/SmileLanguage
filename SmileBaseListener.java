@@ -199,13 +199,61 @@ public class SmileBaseListener implements SmileListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint_stat(SmileParser.Print_statContext ctx) { }
+	@Override public void enterPrintStmt(SmileParser.PrintStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint_stat(SmileParser.Print_statContext ctx) { }
+	@Override public void exitPrintStmt(SmileParser.PrintStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParenthesis(SmileParser.ParenthesisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParenthesis(SmileParser.ParenthesisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLiteral(SmileParser.LiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLiteral(SmileParser.LiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStringLiteral(SmileParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStringLiteral(SmileParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExprLiteral(SmileParser.ExprLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExprLiteral(SmileParser.ExprLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -331,13 +379,13 @@ public class SmileBaseListener implements SmileListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOperator(SmileParser.OperatorContext ctx) { }
+	@Override public void enterRelOp(SmileParser.RelOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOperator(SmileParser.OperatorContext ctx) { }
+	@Override public void exitRelOp(SmileParser.RelOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -386,42 +434,6 @@ public class SmileBaseListener implements SmileListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFloatConst(SmileParser.FloatConstContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterNEQUALS(SmileParser.NEQUALSContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNEQUALS(SmileParser.NEQUALSContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLTHAN(SmileParser.LTHANContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLTHAN(SmileParser.LTHANContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGThan(SmileParser.GThanContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGThan(SmileParser.GThanContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
