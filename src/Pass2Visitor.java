@@ -130,7 +130,30 @@ public class Pass2Visitor extends SmileBaseVisitor<Integer>
   	 
     }
     
-   
+    @Override 
+	public Integer visitWhileStatement(SmileParser.WhileStatementContext ctx)
+	{
+		Integer value;
+		int loopLabel = this.labelCount++;
+		int nextLabel = this.labelCount++;
+
+		//loop label
+		jFile.println("L" + loopLabel + ":");
+
+		//compare statement
+
+		value = visit(ctx.expr());
+
+		//statement
+		jFile.println("ifeq	L" + nextLabel);        
+		value = visit(ctx.stmt());        
+		jFile.println("goto L" + loopLabel);
+
+		//next label
+		jFile.println("L" + nextLabel + ":");
+
+		return value;
+	}   
     
     @Override
     public Integer visitRelOpExpr(SmileParser.RelOpExprContext ctx)

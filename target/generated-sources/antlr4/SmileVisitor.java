@@ -104,6 +104,12 @@ public interface SmileVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfStatement(SmileParser.IfStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SmileParser#whileStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStatement(SmileParser.WhileStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SmileParser#printStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

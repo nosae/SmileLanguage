@@ -161,6 +161,16 @@ public interface SmileListener extends ParseTreeListener {
 	 */
 	void exitIfStatement(SmileParser.IfStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SmileParser#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStatement(SmileParser.WhileStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SmileParser#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStatement(SmileParser.WhileStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SmileParser#printStmt}.
 	 * @param ctx the parse tree
 	 */

@@ -23,11 +23,13 @@ stmt : compoundStmt
      | assignmentStmt
      | ifStatement
      | printStmt
+     | whileStatement
      ;
      
 stmtList       : stmt ( ';)' stmt )* ;
 assignmentStmt : variable '=)' expr ;
 ifStatement    : IF expr THEN stmt ( ELSE stmt )? ;
+whileStatement : WHILE expr DO stmt ;
 printStmt      : 'print' '_'? parenthesis;
 parenthesis : '(' literal* ((',' | '+')? literal)* ')' ;
 literal : exprLiteral | stringLiteral;
@@ -71,6 +73,8 @@ VAR     : 'VAR' ;
 START   : 'START' ;
 STOP    : 'STOP' ;
 IF      : 'IF' ;
+WHILE	: 'WHILE' ;
+DO		: 'DO'	;
 THEN    : 'THEN' ;
 ELSE    : 'ELSE' ;
 PRINT   : 'PRINT' ;
