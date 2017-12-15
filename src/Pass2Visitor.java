@@ -268,7 +268,7 @@ public class Pass2Visitor extends SmileBaseVisitor<Integer>
 //        typeIndicator = "I";
         jFile.println("; starwhale 2");
     		jFile.println("\tgetstatic     java/lang/System/out Ljava/io/PrintStream;");
-    		jFile.println("\tdup");
+//    		jFile.println("\tdup");
     		Integer value = visitChildren(ctx);
     		jFile.println("\tinvokevirtual java/io/PrintStream/print(" + typeIndicator + ")V");
     		

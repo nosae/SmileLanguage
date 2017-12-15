@@ -59,7 +59,7 @@
 	ldc	23.5
 	putstatic	sample/x F
 
-; WHILE(i<25)DOi=)i+1;)print(j);)END
+; WHILE(i<25)DOi=)i+1;)print("go");)print(i);)END
 
 L1:
 	getstatic	sample/i I
@@ -79,12 +79,20 @@ ifeq	L2
 	iadd
 	putstatic	sample/i I
 
-; print(j)
+; print("go")
+
+	getstatic     java/lang/System/out Ljava/io/PrintStream;
+	ldc           "go"
+	invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+	getstatic     java/lang/System/out Ljava/io/PrintStream;
+	ldc           ""
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+
+; print(i)
 
 ; starwhale 2
 	getstatic     java/lang/System/out Ljava/io/PrintStream;
-	dup
-	getstatic	sample/j I
+	getstatic	sample/i I
 	invokevirtual java/io/PrintStream/print(I)V
 	getstatic     java/lang/System/out Ljava/io/PrintStream;
 	ldc           " "
