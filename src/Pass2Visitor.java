@@ -146,7 +146,7 @@ public class Pass2Visitor extends SmileBaseVisitor<Integer>
 
 		//statement
 		jFile.println("ifeq	L" + nextLabel);        
-		value = visit(ctx.stmt());        
+		value = visit(ctx.stmtList());        
 		jFile.println("goto L" + loopLabel);
 
 		//next label

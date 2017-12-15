@@ -17,7 +17,7 @@ varList      : varId ( ',' varId )* ;
 varId        : IDENTIFIER ;
 typeId       : IDENTIFIER ;
 
-compoundStmt : START stmtList ';)' STOP ;
+compoundStmt : START stmtList STOP ;
 
 stmt : compoundStmt
      | assignmentStmt
@@ -26,10 +26,10 @@ stmt : compoundStmt
      | whileStatement
      ;
      
-stmtList       : stmt ( ';)' stmt )* ;
+stmtList       : stmt ( ';)' stmt )* ';)';
 assignmentStmt : variable '=)' expr ;
 ifStatement    : IF expr THEN stmt ( ELSE stmt )? ;
-whileStatement : WHILE expr DO stmt ;
+whileStatement : WHILE expr DO stmtList 'END';
 printStmt      : 'print' '_'? parenthesis;
 parenthesis : '(' literal* ((',' | '+')? literal)* ')' ;
 literal : exprLiteral | stringLiteral;

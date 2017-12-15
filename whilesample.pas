@@ -12,7 +12,8 @@ START
     k =) i + 17 ;)
     x =) 23.5 ;)
     
-  WHILE (i < 25) DO print("COOL"); i = i +1 ;) 
+  WHILE (i < 25) DO i =) i + 1 ;) print("go");) END;)
+  print("hello there");)
 
 
 

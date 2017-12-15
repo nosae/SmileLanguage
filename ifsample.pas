@@ -12,7 +12,7 @@ START
     k =) i + 17 ;)
     x =) 23.5 ;)
     
-  IF i == 26	 THEN print("YESSSS") ELSE print("NOOOOO")  ;)
+  IF i == 25  THEN print(i) ELSE print(j)  ;)
 
 
 

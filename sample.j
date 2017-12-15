@@ -37,9 +37,9 @@
 	invokenonvirtual PascalTextIn/<init>()V
 	putstatic        sample/_standardIn LPascalTextIn;
 
-; i=)24
+; i=)0
 
-	ldc	24
+	ldc	0
 	putstatic	sample/i I
 
 ; j=)0
@@ -59,7 +59,7 @@
 	ldc	23.5
 	putstatic	sample/x F
 
-; WHILE(i<25)DOprint("COOL")
+; WHILE(i<25)DOi=)i+1;)print(j);)END
 
 L1:
 	getstatic	sample/i I
@@ -72,10 +72,22 @@ L001:
 L002:
 ifeq	L2
 
-; print("COOL")
+; i=)i+1
 
+	getstatic	sample/i I
+	ldc	1
+	iadd
+	putstatic	sample/i I
+
+; print(j)
+
+; starwhale 2
 	getstatic     java/lang/System/out Ljava/io/PrintStream;
-	ldc           "COOL"
+	dup
+	getstatic	sample/j I
+	invokevirtual java/io/PrintStream/print(I)V
+	getstatic     java/lang/System/out Ljava/io/PrintStream;
+	ldc           " "
 	invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
 	getstatic     java/lang/System/out Ljava/io/PrintStream;
 	ldc           ""
@@ -83,12 +95,14 @@ ifeq	L2
 goto L1
 L2:
 
-; i=)i-1
+; print("hello there")
 
-	getstatic	sample/i I
-	ldc	1
-	isub
-	putstatic	sample/i I
+	getstatic     java/lang/System/out Ljava/io/PrintStream;
+	ldc           "hello there"
+	invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+	getstatic     java/lang/System/out Ljava/io/PrintStream;
+	ldc           ""
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 
 	getstatic     sample/_runTimer LRunTimer;
 	invokevirtual RunTimer.printElapsedTime()V
